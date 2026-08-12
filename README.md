@@ -54,12 +54,20 @@ Toolbox is organised into three modules. It features the following tools:
 
 ---
 
-## Render — set up outputs without hand-typing paths
+## Render — queue renders, in the background, and bring them back
 
-Builds output paths from your comp names and tokens, so every render lands where it should
-and is named consistently. Handles versioning for you: it reads the version numbers already
-on disk and in the queue and takes the next one, so you don't overwrite yesterday's render.
-Warns before anything would be overwritten, and adds to the render queue when you're happy.
+Set up outputs without hand-typing paths, then render without tying up After Effects.
+
+| Tool | What it does |
+|---|---|
+| **Add** | Pick the comps to render. |
+| **Preset** | Choose the output module preset. The list is read from your own machine, so it only ever offers formats that machine can actually write. |
+| **Name** | Builds the output name from your comp names and tokens, so everything is named consistently instead of by hand. |
+| **Output** | Where it lands, and how it is foldered. Handles versioning for you: it reads the version numbers already on disk *and* in the queue, and takes the next one — so you don't overwrite yesterday's render. |
+| **After render** | Bring the finished render straight back into the project: import it, import and replace what it was made from, or set it as a proxy. |
+| **Will write** | The exact paths before you commit — what is fine, what would overwrite something, and what is blocked. The path shown is the path written. |
+| **How** | **Render here**, which blocks After Effects until it finishes, or **render in the background**, which hands it to a second After Effects that quits when it is done — so the one you are working in stays usable. |
+| **Finished renders** | Tells you when background renders have finished, and brings them in on a press. A background render can't import into a project it isn't holding, so Toolbox does that part for it — and only into the project the render actually came from. |
 
 ---
 
