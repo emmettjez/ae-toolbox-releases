@@ -82,6 +82,15 @@ Set up outputs without hand-typing paths, then render without tying up After Eff
 
 ## What's new in this version
 
+### 0.8.1
+
+**Fixes and improvements.**
+
+- **Remove unused items** now leaves anything you have marked `[KEEP]` alone, and no
+  longer removes comps that are used only by an expression. If you tag something to
+  protect it, it stays.
+- Various internal improvements and housekeeping.
+
 ### 0.8.0
 
 **Toolbox now tells you when there's a new version.** A check runs shortly after the panel
@@ -99,6 +108,7 @@ Previously the check only ran if you went looking for it in Settings.
 
 | Version | |
 |---|---|
+| **0.8.1** | Fixes and improvements. |
 | **0.8.0** | Update notifications, shown in the panel header. |
 | **0.7.1 – 0.7.4** | Fixes and refinements to updating and installing. |
 | **0.7.0** | First public release, and the first that can update itself. |
