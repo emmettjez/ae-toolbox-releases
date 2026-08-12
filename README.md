@@ -120,8 +120,9 @@ Full notes for every release are on the
 
 ## Install
 
-1. Download `ae-toolbox-latest.zip` from
-   [the latest release](https://github.com/emmettjez/ae-toolbox-releases/releases/latest).
+1. Download the `.zip` from
+   [the latest release](https://github.com/emmettjez/ae-toolbox-releases/releases/latest)
+   — it is named for its version, e.g. `ae-toolbox-0.8.1.zip`.
 2. Unzip it and double-click `Install.command`.
 3. **Quit After Effects completely and reopen it** — extensions are only scanned at launch.
 4. Open it from **Window › Extensions › Toolbox**.
