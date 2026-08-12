@@ -6,10 +6,10 @@ It works from a real dependency graph of your project — what actually referenc
 rather than guessing from filenames. It installs as a dockable panel:
 **Window › Extensions › Toolbox**.
 
-### ⬇ [Download Toolbox](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.zip)
+### ⬇ [Download Toolbox](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg)
 
 That link always gives you the newest version — it does not need updating when a new one
-comes out. Unzip it and double-click `Install.command`.
+comes out. Double-click it and the installer walks you through. No password needed.
 
 **This repository holds the builds.** The source lives in a private repository.
 
@@ -126,14 +126,19 @@ Full notes for every release are on the
 ## Install
 
 1. Download
-   [`ae-toolbox-latest.zip`](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.zip)
-   — always the newest version. (Every release also keeps a copy named for its version,
-   e.g. `ae-toolbox-0.8.1.zip`, if you need a specific one.)
-2. Unzip it and double-click `Install.command`.
+   [`ae-toolbox-latest.pkg`](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg)
+   — always the newest version.
+2. **Double-click it** and follow the installer. It asks for no password and installs only
+   into your own user folder.
 3. **Quit After Effects completely and reopen it** — extensions are only scanned at launch.
 4. Open it from **Window › Extensions › Toolbox**.
 
-Full instructions are in `INSTALL.md` inside the zip.
+The installer is signed and notarized by Apple, so macOS opens it without a warning.
+
+**Prefer to place the files yourself?** Every release also carries a `.zip` with the
+extension folder and an `INSTALL.md` covering the manual route. ⚠️ Note that macOS
+quarantines downloaded shell scripts, so `Install.command` inside that zip will be blocked
+with a *"cannot be verified"* warning — the `.pkg` above exists precisely to avoid that.
 
 ## Updating
 
