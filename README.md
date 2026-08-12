@@ -6,6 +6,11 @@ It works from a real dependency graph of your project — what actually referenc
 rather than guessing from filenames. It installs as a dockable panel:
 **Window › Extensions › Toolbox**.
 
+### ⬇ [Download Toolbox](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.zip)
+
+That link always gives you the newest version — it does not need updating when a new one
+comes out. Unzip it and double-click `Install.command`.
+
 **This repository holds the builds.** The source lives in a private repository.
 
 Toolbox is organised into three modules. It features the following tools:
@@ -120,9 +125,10 @@ Full notes for every release are on the
 
 ## Install
 
-1. Download the `.zip` from
-   [the latest release](https://github.com/emmettjez/ae-toolbox-releases/releases/latest)
-   — it is named for its version, e.g. `ae-toolbox-0.8.1.zip`.
+1. Download
+   [`ae-toolbox-latest.zip`](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.zip)
+   — always the newest version. (Every release also keeps a copy named for its version,
+   e.g. `ae-toolbox-0.8.1.zip`, if you need a specific one.)
 2. Unzip it and double-click `Install.command`.
 3. **Quit After Effects completely and reopen it** — extensions are only scanned at launch.
 4. Open it from **Window › Extensions › Toolbox**.
