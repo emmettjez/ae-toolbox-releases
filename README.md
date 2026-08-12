@@ -1,19 +1,15 @@
 # Toolbox for After Effects
 
-**Toolbox is a suite of project and file management tools for After Effects.**
-
-It works from a real dependency graph of your project — what actually references what —
-rather than guessing from filenames. It installs as a dockable panel:
-**Window › Extensions › Toolbox**.
+Toolbox is a suite of project and file management tools for After Effects.
 
 ### ⬇ [Download Toolbox](https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg)
 
-That link always gives you the newest version — it does not need updating when a new one
-comes out. Double-click it and the installer walks you through. No password needed.
+It installs as a dockable panel: **Window › Extensions › Toolbox**.
 
-**This repository holds the builds.** The source lives in a private repository.
+Toolbox will let you know when a new version is available, and update itself without you
+having to download a new version. Check for updates in settings.
 
-Toolbox is organised into three modules. It features the following tools:
+Toolbox is organized into three modules. It features the following tools:
 
 ---
 
@@ -48,7 +44,7 @@ Toolbox is organised into three modules. It features the following tools:
 | Tool | What it does |
 |---|---|
 | **Remove unused items** | Deletes comps, footage and solids that nothing references. |
-| **Reduce to masters** | Keeps your deliverables and everything they use, and removes the rest. Expression-aware, so a comp referenced only by `comp("X")` survives. |
+| **Reduce to masters** | Keeps your deliverables and everything they use, and removes the rest. Expression-aware, so a comp referenced only by an expression survives. |
 | **Consolidate imported project** | Cleans up after importing another .aep: links the imported items to files you already have and removes the duplicates. |
 
 ### Create
@@ -63,16 +59,12 @@ Toolbox is organised into three modules. It features the following tools:
 
 Set up outputs without hand-typing paths, then render without tying up After Effects.
 
-| Tool | What it does |
+| Feature | What it does |
 |---|---|
-| **Add** | Pick the comps to render. |
-| **Preset** | Choose the output module preset. The list is read from your own machine, so it only ever offers formats that machine can actually write. |
-| **Name** | Builds the output name from your comp names and tokens, so everything is named consistently instead of by hand. |
-| **Output** | Where it lands, and how it is foldered. Handles versioning for you: it reads the version numbers already on disk *and* in the queue, and takes the next one — so you don't overwrite yesterday's render. |
-| **After render** | Bring the finished render straight back into the project: import it, import and replace what it was made from, or set it as a proxy. |
-| **Will write** | The exact paths before you commit — what is fine, what would overwrite something, and what is blocked. The path shown is the path written. |
-| **How** | **Render here**, which blocks After Effects until it finishes, or **render in the background**, which hands it to a second After Effects that quits when it is done — so the one you are working in stays usable. |
-| **Finished renders** | Tells you when background renders have finished, and brings them in on a press. A background render can't import into a project it isn't holding, so Toolbox does that part for it — and only into the project the render actually came from. |
+| **Naming** | Comprehensive naming tools for your renders. |
+| **Output** | Pick from recent and saved locations, and save into automatically named folders. |
+| **Versioning** | Reads the version numbers already on disk and in the queue, and takes the next one — so you don't overwrite yesterday's render. |
+| **Background rendering** | Render in the background so you can keep working, then auto-import your render when it's done. |
 
 ---
 
