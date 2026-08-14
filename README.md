@@ -18,40 +18,40 @@ Toolbox is organized into three modules:
 
 | Tool | What it does |
 | :---- | :---- |
-| **Organize items into folders** | Files every comp and asset into a folder structure you define or pick from a template. |
-| **Organize files on disk** | Organize the project’s files on disk into a structure you define or pick from a template. |
-| **Bring stray files into the project** | Finds footage living outside your project directory and moves it in, so the job is self-contained. |
-| **Relink missing footage** | Searches for missing footage across directories and reconnects it. |
-| **Collect footage into a new directory** | Improved collect footage function. |
-| **Remove empty folders** | Remove empty folders from your After Effects project. |
+| **Organize** | Files every comp and asset into a folder structure you define or pick from a template. |
+| **Sort disk** | Organize the project’s files on disk into a structure you define or pick from a template. |
+| **Gather** | Finds footage living outside your project directory and moves it in, so the job is self-contained. |
+| **Relink** | Searches for missing footage across directories and reconnects it. |
+| **Collect** | Improved collect footage function. |
+| **Empty** | Remove empty folders from your After Effects project. |
 
 ### Names
 
 | Tool | What it does |
 | :---- | :---- |
-| **Rename items** | Bulk renaming — find and replace, prefixes and suffixes, numbering.  |
-| **Number comps by how deep they sit** | Numbers your comps by tier, so the numbering reflects the actual structure instead of the order you happened to build things in. |
+| **Rename** | Bulk renaming — find and replace, prefixes and suffixes, numbering. |
+| **Number** | Numbers your comps by tier, so the numbering reflects the actual structure instead of the order you happened to build things in. |
 
 ### Fixes
 
 | Tool | What it does |
 | :---- | :---- |
-| **Comp Settings** | Brings comps onto one frame rate. |
+| **Comp settings** | Brings comps onto one frame rate. |
 | **Resize** | Changes a comp's resolution — with its precomps, text, masks, lights, cameras and effects — so the render is identical at the new size. |
 
 ### Remove
 
 | Tool | What it does |
 | :---- | :---- |
-| **Remove unused items** | Deletes comps, footage and solids that nothing references. |
-| **Reduce to masters** | Expression-aware reduce project. |
-| **Consolidate imported project** | Cleans up after importing another .aep: links the imported items to files you already have and removes the duplicates. |
+| **Unused** | Deletes comps, footage and solids that nothing references. |
+| **Reduce** | Expression-aware reduce project. |
+| **Consolidate** | Cleans up after importing another .aep: links the imported items to files you already have and removes the duplicates. |
 
 ### Create
 
 | Tool | What it does |
 | :---- | :---- |
-| **Duplicate comp with its assets** | Duplicates a comp *and* its precomp tree, rewired to the copies — not left sharing the originals. Expression and effect aware. |
+| **Duplicate** | Duplicates a comp *and* its precomp tree, rewired to the copies — not left sharing the originals. Expression and effect aware. |
 
 ---
 
