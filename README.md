@@ -22,7 +22,7 @@ Toolbox is organized into three modules:
 | **Sort disk** | Organize the project’s files on disk into a structure you define or pick from a template. |
 | **Gather** | Finds footage living outside your project directory and moves it in, so the job is self-contained. |
 | **Relink** | Searches for missing footage across directories and reconnects it. |
-| **Collect** | Improved collect footage function. |
+| **Collect** | Copies the project and its footage, including proxies, to one destination. Whole project, or reduced to chosen comps. |
 | **Empty** | Remove empty folders from your After Effects project. |
 
 ### Names
@@ -36,7 +36,7 @@ Toolbox is organized into three modules:
 
 | Tool | What it does |
 | :---- | :---- |
-| **Comp settings** | Brings comps onto one frame rate. |
+| **Comp settings** | Sets frame rate, dimensions and duration across many comps. |
 | **Resize** | Changes a comp's resolution — with its precomps, text, masks, lights, cameras and effects — so the render is identical at the new size. |
 
 ### Remove
@@ -44,7 +44,7 @@ Toolbox is organized into three modules:
 | Tool | What it does |
 | :---- | :---- |
 | **Unused** | Deletes comps, footage and solids that nothing references. |
-| **Reduce** | Expression-aware reduce project. |
+| **Reduce** | Removes items not used by the chosen comps. Expression references count as use. |
 | **Consolidate** | Cleans up after importing another .aep: links the imported items to files you already have and removes the duplicates. |
 
 ### Create
@@ -59,10 +59,10 @@ Toolbox is organized into three modules:
 
 | Feature | What it does |
 | :---- | :---- |
-| **Naming** | Comprehensive naming tools for your renders. |
+| **Naming** | Builds output filenames from comp names: find and replace, added text, tokens. |
 | **Output** | Pick from recent and saved locations, and save into automatically named folders. |
-| **Versioning** | Reads the version numbers already on disk and in the queue, and takes the next one — so you don't overwrite yesterday's render. |
-| **Background rendering** | Render in the background so you can keep working, then auto-import your render when it's done. |
+| **Versioning** | Reads existing version numbers on disk and in the render queue, and uses the next. |
+| **Background rendering** | Renders in a separate After Effects instance. Finished renders are imported on request. |
 
 ---
 
@@ -70,7 +70,7 @@ Toolbox is organized into three modules:
 
 | Tool | What it does |
 | :---- | :---- |
-| **Import assets** | Browse and import any type of importable asset across directories. |
+| **Import assets** | Browses directories and imports footage, stills and image sequences. |
 | **Update assets** | Looks for new versions of assets in your project and updates them. |
 
 ---
@@ -121,15 +121,13 @@ Full notes for every release are on the [Releases page](https://github.com/emmet
 
 The installer is signed, and notarized by Apple, so macOS opens it without a warning.
 
-**Prefer to place the files yourself?** Every release also carries a `.zip` with the extension folder and an `INSTALL.md` covering the manual route. ⚠️ Note that macOS quarantines downloaded shell scripts, so `Install.command` inside that zip will be blocked with a *"cannot be verified"* warning — the `.pkg` above exists precisely to avoid that.
+**Prefer to place the files yourself?** Every release also carries a `.zip` with the extension folder and an `INSTALL.md`. macOS blocks the `Install.command` inside it with a “cannot be verified” warning — the `.pkg` above exists to avoid that.
 
 ## Updating
 
 **Toolbox updates itself inside After Effects.** It checks for new releases once a day, shortly after the panel opens, and shows a notice in the panel when something new is available — one button installs it, and you restart After Effects to pick it up. From Settings you can check at any moment, or change how often the automatic check runs: every time the panel opens, daily, weekly, or never.
 
 It keeps the previous version alongside the new one, so a build that misbehaves can be put back. This is the only thing Toolbox uses the network for.
-
-You should only need to install by hand once.
 
 ## Your files
 
