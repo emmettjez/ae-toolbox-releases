@@ -77,20 +77,31 @@ Toolbox is organized into three modules:
 
 ## What's new in this version
 
-### 0.8.2
+### Toolbox 0.8.3 — August 14, 2026
 
-**Resize — change a comp's resolution without changing the render.** Pick a scale factor, a target width or height, or a preset, and everything downstream follows: precomps, footage, solids, text, effects, lights and cameras.
+#### New Features
 
-- Text resizes its type — font size, leading, baseline shift — instead of ending up at 200% scale.
-- Lights, cameras and thirty measured effects keep their look: falloff, zoom, blurs, glows and shadows all scale with the scene. Verified by render comparison, not just numbers.
-- Anything shared with comps outside the resize can be duplicated for the resized tree — the outside comps render untouched, expressions intact.
-- One undo. Hundreds of changes across dozens of comps — duplicates included — revert with a single ⌘Z.
-- It tells you the truth afterwards: anything it refused or couldn't guarantee is stated in plain language, and third-party effects are named, never guessed at.
+**Collect**
+- Added a scope option: collect the whole project, or only chosen comps.
+- Footage and comp proxies are collected and relinked. Missing proxy files are reported.
+- Gather can include image sequences (off by default). Sequences are copied whole; incomplete runs are reported.
+
+#### Improvements
+
+**Collect**
+- The file-type exclusion list starts empty and lists only types present in the project. Exclusions do not persist between sessions.
+- A separate expression scan is no longer required.
+
+#### Bug Fixes
+
+- Fixed layered Photoshop and Illustrator items collecting as the flattened document. Same fix in Sort disk, Relink, and Gather.
+- Fixed Sort disk skipping image sequences with the sequence option enabled.
 
 ## Version history
 
 | Version |  |
 | :---- | :---- |
+| **0.8.3** | Collect: whole-project scope, proxies, image sequences. |
 | **0.8.2** | Resize. |
 | **0.8.1** | Fixes and improvements. |
 | **0.8.0** | Update notifications, shown in the panel header. |
