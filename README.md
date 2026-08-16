@@ -23,7 +23,6 @@ Toolbox is organized into three modules:
 | **Gather** | Finds footage living outside your project directory and moves it in, so the job is self-contained. |
 | **Relink** | Searches for missing footage across directories and reconnects it. |
 | **Collect** | Copies the project and its footage, including proxies, to one destination. Whole project, or reduced to chosen comps. |
-| **Empty** | Remove empty folders from your After Effects project. |
 
 ### Names
 
@@ -43,6 +42,7 @@ Toolbox is organized into three modules:
 
 | Tool | What it does |
 | :---- | :---- |
+| **Empty folders** | Remove empty folders from your After Effects project. |
 | **Unused** | Deletes comps, footage and solids that nothing references. |
 | **Reduce** | Removes items not used by the chosen comps. Expression references count as use. |
 | **Consolidate** | Cleans up after importing another .aep: links the imported items to files you already have and removes the duplicates. |
