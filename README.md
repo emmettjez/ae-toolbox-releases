@@ -29,7 +29,7 @@ Toolbox is organized into three modules:
 | Tool | What it does |
 | :---- | :---- |
 | **Rename** | Bulk renaming — find and replace, prefixes and suffixes, numbering. |
-| **Number** | Numbers your comps by tier, so the numbering reflects the actual structure instead of the order you happened to build things in. |
+| **Number comps** | Numbers your comps by tier, so the numbering reflects the actual structure instead of the order you happened to build things in. |
 
 ### Fixes
 
