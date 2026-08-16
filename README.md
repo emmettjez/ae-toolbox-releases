@@ -77,30 +77,28 @@ Toolbox is organized into three modules:
 
 ## What's new in this version
 
-### Toolbox 0.8.3 — August 14, 2026
+### Toolbox 0.8.4 — August 16, 2026
 
 #### New Features
+**Project directory**
+- Added a Managed / Unmanaged switch in the header, beside Masters and Protected. Managed is the default and is unchanged. Unmanaged marks a directory Toolbox does not organize — for projects that live inside a larger job folder with footage anywhere in it. The setting applies to every project under the chosen directory.
+- Unmanaged: Sort disk is off. Gather asks for a destination and copies files into it without a folder scheme. Footage on other drives is listed, not flagged. There is no default render folder.
 
-**Collect**
-- Added a scope option: collect the whole project, or only chosen comps.
-- Footage and comp proxies are collected and relinked. Missing proxy files are reported.
-- Gather can include image sequences (off by default). Sequences are copied whole; incomplete runs are reported.
+**Render**
+- The output destination is remembered per project. A destination inside the project directory is stored relative to it, so a moved project keeps rendering into itself.
 
 #### Improvements
-
-**Collect**
-- The file-type exclusion list starts empty and lists only types present in the project. Exclusions do not persist between sessions.
-- A separate expression scan is no longer required.
+- The "moved away from its footage" note in Gather and Sort disk now also names the case where the project was never meant to live beside its footage, and points to the switch.
 
 #### Bug Fixes
-
-- Fixed layered Photoshop and Illustrator items collecting as the flattened document. Same fix in Sort disk, Relink, and Gather.
-- Fixed Sort disk skipping image sequences with the sequence option enabled.
+- Fixed a render plan with no destination resolving to the volume root.
+- Fixed a directory with a sibling's name as its prefix (`/jobs/0412`, `/jobs/04120`) counting as inside the project.
 
 ## Version history
 
 | Version |  |
 | :---- | :---- |
+| **0.8.4** | Managed / Unmanaged project directory; render destination remembered per project. |
 | **0.8.3** | Collect: whole-project scope, proxies, image sequences. |
 | **0.8.2** | Resize. |
 | **0.8.1** | Fixes and improvements. |
