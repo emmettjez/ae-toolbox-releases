@@ -12,11 +12,20 @@ How to set up a project, a page for every tool, and the things you might not thi
 
 Once installed, Toolbox tells you when a new version is available and updates itself — you should only need to download it once.
 
-Toolbox is organized into three modules:
+Toolbox is one grid of tools, in categories laid out in the order a job runs:
 
 ---
 
-## Project — clean up and reorganize the project itself
+## Import — bring in footage and keep it current
+
+| Tool | What it does |
+| :---- | :---- |
+| **Import** | Browses directories and imports footage, stills and image sequences. |
+| **Update** | Looks for new versions of assets in your project and updates them. |
+
+---
+
+## Project tools — clean up and reorganize the project itself
 
 ### Folders & files
 
@@ -70,38 +79,35 @@ Toolbox is organized into three modules:
 
 ---
 
-## Import — bring in footage and keep it current
-
-| Tool | What it does |
-| :---- | :---- |
-| **Import assets** | Browses directories and imports footage, stills and image sequences. |
-| **Update assets** | Looks for new versions of assets in your project and updates them. |
-
----
 
 ## What's new in this version
 
-### Toolbox 0.8.4 — August 16, 2026
+### Toolbox 0.8.5 — August 17, 2026
 
 #### New Features
-**Project directory**
-- Added a Managed / Unmanaged switch in the header, beside Masters and Protected. Managed is the default and is unchanged. Unmanaged marks a directory Toolbox does not organize — for projects that live inside a larger job folder with footage anywhere in it. The setting applies to every project under the chosen directory.
-- Unmanaged: Sort disk is off. Gather asks for a destination and copies files into it without a folder scheme. Footage on other drives is listed, not flagged. There is no default render folder.
-
-**Render**
-- The output destination is remembered per project. A destination inside the project directory is stored relative to it, so a moved project keeps rendering into itself.
+**Panel**
+- The panel is one grid of tools in seven categories: Import, Folders & files, Names, Fixes, Remove, Create, Render. The Project / Render / Import switcher is gone.
+- Import assets and Update assets are two tiles in the Import category. Each opens its own full-panel sheet; the sheet states what a scan would read before Scan is pressed. Import and Update are the sheet's main button.
+- Render is a tile in the Render category and opens as a full-panel sheet. Close puts the grid back; the comp basket and settings are kept.
+- The Masters, Protected and Managed strip and the tool footer are shown at all times.
 
 #### Improvements
-- The "moved away from its footage" note in Gather and Sort disk now also names the case where the project was never meant to live beside its footage, and points to the switch.
+- Background render jobs are shown at the top of the Render sheet and, when it is closed, in a strip under the header. A running or waiting job puts a dot on the Render tile.
+- Cancelling a background render from inside the Render sheet returns to the sheet afterwards.
+- Every sheet has a ? that opens its page of the manual.
+- Opening a different project while a sheet is open closes the sheet; the status line says which one.
+- Closing the Import or Update sheet stops a scan in progress.
+- Job files are read once per redraw of the panel instead of once per row.
 
 #### Bug Fixes
-- Fixed a render plan with no destination resolving to the volume root.
-- Fixed a directory with a sibling's name as its prefix (`/jobs/0412`, `/jobs/04120`) counting as inside the project.
+- Fixed Escape closing the Import sheet while its Filters popover was open.
+- Fixed the Import and Update sheets failing to open before the first scan of a project.
 
 ## Version history
 
 | Version |  |
 | :---- | :---- |
+| **0.8.5** | One grid of tools; Import and Render open as sheets. |
 | **0.8.4** | Managed / Unmanaged project directory; render destination remembered per project. |
 | **0.8.3** | Collect: whole-project scope, proxies, image sequences. |
 | **0.8.2** | Resize. |
