@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unused — Toolbox manual</title>
+<meta name="description" content="Deletes the comps, footage and solids that nothing in the project references — expressions counted as references, and comps only once you have said which comps matter.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li class="here"><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Unused</h1><p class="lede">Deletes the comps, footage and solids that nothing in the project references — expressions counted as references, and comps only once you have said which comps matter.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>The project has collected footage from three rounds of revisions and you want back only what is still in use.</li><li>You are about to archive a job and would rather not archive the things nothing points at.</li><li>You imported a pile of stills, used four of them, and the rest are sitting in <code>raster</code>.</li><li>A comp tree you abandoned is still in the project and you want it gone rather than filed.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Asks, of every item, whether anything at all references it — a layer, a proxy, an Essential Graphics control, or an expression naming it by <code>comp("X")</code> or <code>footage("X")</code> — and deletes the ones where the answer is nothing. Footage and solids are judged that way whatever else is set up; <strong>comps are only judged once you have declared masters</strong>, because until then a comp with nothing above it looks exactly like the one you deliver. The run is one ⌘Z.</p>
+<p>What it does not do: it does not set anything aside first — there is no quarantine folder, removals delete — it does not touch files on disk, and it does not judge a comp on whether you still want it, only on whether anything points at it.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Press <strong>Unused</strong>. The first press reads the expression corpus, so the tile says <em>reading…</em> for a moment.</li><li>Read the notes at the top of the sheet. A note in warning colour is a refusal, and it says which part of the run is not happening.</li><li>Read the <strong>Removes</strong> list — every item by name, with the folder it sits in. The folder is the point: three items can share one filename.</li><li>Press <strong>Remove n</strong>.</li></ol>
+<p><strong>Scope.</strong> The whole project. Unused takes no selection.</p>
+<p><img src="../../img/unused.png" alt="The Remove unused items sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Comps</strong></td><td>On. Only acts once masters are declared; without them the run says so and removes no comp.</td></tr><tr><td><strong>Footage</strong></td><td>On. Footage nothing references, master or no master.</td></tr><tr><td><strong>Solids</strong></td><td>On. Same rule as footage.</td></tr><tr><td><strong>Include items inside imported .aeps</strong></td><td>Off by default. On, items that came in with an imported <code>.aep</code> are judged too. Off, that subtree is left alone — run <a href="../../project/consolidate/">Consolidate</a> on it instead.</td></tr><tr><td><strong>Leave .ai/.psd layers alone</strong></td><td>On by default. One unused layer of a <code>.psd</code> the project uses is not unused art, so layer-set members are spared as a set.</td></tr><tr><td><strong>Also items used only by switched-off layers</strong></td><td>Off by default. A stronger claim than unused: these things <em>are</em> referenced, but only by layers that do not render.</td></tr></tbody></table></div>
+<p>Notes it may raise, and what they mean:</p>
+<ul><li><em>No masters declared, so no comp is removed — a comp with nothing above it looks exactly like the one you deliver. Declare masters first.</em> — see <a href="../../setup/project/#masters">Set up each project</a>. Footage and solids still go.</li><li><em>Cannot tell which items an expression names — the expressions phase has not been scanned, so nothing is removed. A comp only <code>comp("X")</code> reaches looks exactly like an unused one.</em> — nothing at all is proposed. It refuses rather than guessing, because an empty answer and an unread one look identical.</li><li><em>Cannot tell which layers are switched off — …</em> — the extra tick could not be applied; the rest of the run is unaffected.</li></ul>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z, deletes included. Nothing on disk changes, and nothing is moved anywhere first.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>Declare your masters before you run this.</strong> On three real projects, running it without them would have removed 30, 10 and 55 comps — the master edit among them. The refusal exists because of that, and the count on the header's <strong>Masters</strong> button is never hidden for the same reason.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Running it twice is expected, not a bug.</strong> Deleting an unused comp removes the last reference to everything under it, so a second pass legitimately finds more. It is a cascade, and it ends.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Protected items and anything an expression names are spared</strong> — including a <code>comp("X")</code> in a part of the project you are not thinking about. It over-protects in the safe direction.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Strip a project down before archiving it.</strong> Masters declared, everything on, one press.</li><li><strong>Delete the footage only a switched-off layer uses.</strong> Tick <strong>Also items used only by switched-off layers</strong>. It is off by default because it acts on your project rather than on a copy.</li><li><strong>Clear the footage but keep every comp.</strong> Untick <strong>Comps</strong>.</li><li><strong>Leave an imported project untouched.</strong> <strong>Include items inside imported .aeps</strong> stays off, so the subtree is not judged until you have consolidated it.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../project/reduce/">Reduce</a> when you want the opposite question answered — keep these, remove the rest. <a href="../../project/consolidate/">Consolidate</a> first if an <code>.aep</code> was imported. <a href="../../project/empty-folders/">Empty folders</a> after, for the shells the deletes leave.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

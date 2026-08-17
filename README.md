@@ -6,6 +6,10 @@ Toolbox is a suite of project and file management tools for After Effects.
 
 It installs as a dockable panel: **Window › Extensions › Toolbox**.
 
+### 📖 [Read the manual](https://emmettjez.github.io/ae-toolbox-releases/)
+
+How to set up a project, a page for every tool, and the things you might not think to do. The **?** in the panel header opens it too.
+
 Once installed, Toolbox tells you when a new version is available and updates itself — you should only need to download it once.
 
 Toolbox is organized into three modules:

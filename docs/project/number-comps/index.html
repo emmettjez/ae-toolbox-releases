@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Number comps — Toolbox manual</title>
+<meta name="description" content="Prefixes each comp with a number for how deep it sits under your masters, so the Project panel sorts by structure rather than by the order you happened to build things in.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li class="here"><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Number comps</h1><p class="lede">Prefixes each comp with a number for how deep it sits under your masters, so the Project panel sorts by structure rather than by the order you happened to build things in.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>The Project panel's alphabetical sort tells you nothing about what feeds what.</li><li>You are handing the project on and want a reader to see the tiers at a glance.</li><li>A build grew precomps inside precomps and you have lost track of which level a comp is on.</li><li>You have just declared masters, and the structure now has a top to measure from.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Walks down from your declared masters and prefixes every comp it reaches with the depth it sits at — <code>00_</code> for a master, <code>01_</code> for what a master uses, <code>02_</code> below that. Depth stops at 3, so a deeply nested tree tops out at <code>03_</code>. Re-running is safe: an existing numeric prefix is stripped before the new one goes on, so you get <code>01_Edit</code> and never <code>01_00_Edit</code>. Renamed comps have the expressions that name them repaired at the same time.</p>
+<p>What it does not do: it does not move anything, it does not touch the disk, and it does not number footage, solids or folders — only comps. A comp nothing reaches is left unnumbered, because it has no depth.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Declare your masters in the header if you have not — see <a href="../../setup/project/#masters">Set up each project</a>.</li><li>Press <strong>Number comps</strong>.</li><li>Set <strong>Joined by</strong> and <strong>Pad to</strong> if the defaults are not your convention.</li><li>Read the preview — old name to new name, capped with a <em>… n more</em> count.</li><li>Press <strong>Number n</strong>.</li></ol>
+<p><strong>Scope.</strong> Whole project only. There is no scope switch: a depth prefix is a statement about the whole tree, and numbering half of one would describe nothing.</p>
+<p><img src="../../img/number-comps.png" alt="The Number comps sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Joined by</strong></td><td><em>underscore</em> (default) · <em>dash</em> · <em>dot</em> — what sits between the number and the name.</td></tr><tr><td><strong>Pad to</strong></td><td><em>2 digits</em> (default) · <em>3 digits</em>. Two gives you <code>00_</code>…<code>03_</code>.</td></tr></tbody></table></div>
+<p>The preview lists each comp as <em>old name</em> → <em>new name</em>, first eight rows and then a count of the rest. Comps that already carry the right prefix do not appear, because nothing changes for them.</p>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z. Nothing on disk changes.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>Depth is measured from your masters, and without masters it is measured from every parentless comp.</strong> The fallback keeps the tiers meaningful on a first run, but it means the numbers change the moment you declare masters — a comp nothing renders is parentless too, so it is a <code>00_</code> until a master exists to be measured from. Declare masters first and number once.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A comp nothing reaches gets no number.</strong> It has no depth, so there is nothing honest to write. If a comp you expected to be numbered is not, that is the tool telling you nothing in the tree uses it — which is the same signal <a href="../../project/unused/">Unused</a> acts on.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Numbers are the only lever on After Effects' sort.</strong> The Project panel sorts folders and items by name, and Toolbox cannot change that. This is why the prefix is a number rather than a tag, and why the same trick is offered for folders in Settings › Folder naming.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Number the folders to match.</strong> Settings › Folder naming numbers the template's folders (<code>00_comps</code>, <code>01_mov</code>…) with the same separators, so the whole panel reads top-down.</li><li><strong>Re-run it after restructuring.</strong> Move a comp up or down a tier and re-press: the old prefix is stripped and the new depth applied, so the numbers never drift out of step with the build.</li><li><strong>Use it as a check.</strong> A comp that comes back <code>03_</code> when you thought it was one level down is a nesting you did not know about.</li><li><strong>Run <a href="../../project/rename/">Rename</a> afterwards.</strong> It leaves the numeric prefix alone unless you ask it to touch it, so a house style and a depth prefix can coexist.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../setup/project/#masters">Set up each project</a> decides what the depth is measured from. <a href="../../project/rename/">Rename</a> for everything else about names, and <a href="../../project/organize/">Organize</a> if you want the folders to say the same thing the prefixes do.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

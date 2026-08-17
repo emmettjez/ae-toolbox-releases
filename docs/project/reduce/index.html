@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reduce — Toolbox manual</title>
+<meta name="description" content="Keeps your masters — or the comps you picked — and everything they use, and removes the rest. After Effects' Reduce Project, except it can read expressions.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li class="here"><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Reduce</h1><p class="lede">Keeps your masters — or the comps you picked — and everything they use, and removes the rest. After Effects' Reduce Project, except it can read expressions.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>A delivery is going out and the project should hold that one master and nothing else.</li><li>You want a version of the job cut down to three comps before you hand it to someone.</li><li>The project has grown a second and third idea beside the one that shipped.</li><li>After Effects' own <strong>File › Reduce Project</strong> has broken a comp that only an expression reached.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Takes a set of comps to keep, walks everything they use — layers, sources, precomps, proxies, and anything an expression names — and removes every item outside that set. The comps to keep are your declared masters by default, or the comps you have selected in the Project panel if you switch <strong>Keep</strong> over. Protected items seed the walk too, so what they use survives with them. It is one ⌘Z.</p>
+<p>What it does not do: it does not move or file anything (<a href="../../project/organize/">Organize</a> does), it does not touch files on disk, and it does not decide anything for you when there is nothing to reduce <em>to</em> — with no masters and no selection it refuses and says so.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Declare your masters first — <a href="../../setup/project/#masters">Set up each project</a> — unless you mean to keep a hand-picked selection instead.</li><li>Press <strong>Reduce</strong>. The first press reads the expression corpus, so the tile says <em>reading…</em> for a moment.</li><li><strong>Read the Keep row before anything else.</strong> It is the one control that decides the whole run.</li><li>Read the note: <em>Keeping n declared masters and everything they use.</em> — or the selected-comps wording. Then read the <strong>Removes</strong> list.</li><li>Press <strong>Remove n</strong>.</li></ol>
+<p><strong>Scope.</strong> The whole project, always. There is no selection scope here and that is deliberate: a selection scope promises not to touch what is outside it, and touching what is outside it is this tool's entire job. Picking comps is an option — <strong>Keep</strong> — not a scope.</p>
+<p><img src="../../img/reduce.png" alt="The Reduce to masters sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Keep</strong></td><td><strong>declared masters</strong> (default) or <strong>the comps I have selected</strong>. This is what survives. Everything else goes.</td></tr><tr><td><strong>Include items inside imported .aeps</strong></td><td>Off by default. On, items that came in with an imported <code>.aep</code> are removed too if nothing kept reaches them. Off, that subtree is left standing.</td></tr></tbody></table></div>
+<p>Notes it may raise, and what they mean:</p>
+<ul><li><em>Keeping n declared masters and everything they use.</em> — the run as it stands.</li><li><em>Keeping n selected comps and everything they use.</em> — same, with <strong>Keep</strong> switched over.</li><li><em>No masters declared — nothing to reduce to.</em> — nothing is proposed. Declare masters, or switch <strong>Keep</strong> to your selection.</li><li><em>No comps selected — select the comps to keep, or switch to the whole project.</em> — <strong>Keep</strong> is set to the selection and the selection holds no comps.</li></ul>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z, deletes included. Nothing on disk changes.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>This is the one tool where a smaller choice does more.</strong> Everywhere else in the panel, narrowing what you point at narrows what happens. Here the comps you name are what <em>survives</em>, so naming fewer of them removes <strong>more</strong>. Read the <strong>Keep</strong> row and the note under it before you press the button, every time.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>It reads expressions, which is the difference from After Effects' own Reduce Project.</strong> Measured on a real project: reachability alone dropped 3 comps that only <code>comp("X")</code> reached, and 31 of the items they used. Those survive here.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Protected items only ever make the result smaller.</strong> A <code>[KEEP]</code> comp seeds the walk, so what it uses is kept too. Nothing is removed <em>because</em> of a protection.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Cut a delivery down to one master before handing it over.</strong> Declare the one master, run it, Save As.</li><li><strong>Keep exactly the three comps you highlighted.</strong> Select them, switch <strong>Keep</strong> to <em>the comps I have selected</em>.</li><li><strong>Reduce a version of the job rather than the job.</strong> Save As first. Reduce acts on the project you have open, not on a copy — <a href="../../project/collect/">Collect</a> is the one that reduces a copy.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../project/unused/">Unused</a>, which answers the opposite question: remove what nothing points at, rather than keep what these comps reach. <a href="../../project/collect/">Collect</a> already reduces the copy it writes, so run Reduce first only when you want your own project reduced too. <a href="../../project/empty-folders/">Empty folders</a> after, for the shells left behind.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

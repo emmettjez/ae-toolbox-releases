@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order of operations — Toolbox manual</title>
+<meta name="description" content="Five pairs of tools where the order changes the result, and the reason in each case.">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../">Start here</a></li><li><a href="../setup/tool/">Set up once</a></li><li><a href="../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../project/organize/">Organize</a></li><li><a href="../project/sort-disk/">Sort disk</a></li><li><a href="../project/gather/">Gather</a></li><li><a href="../project/relink/">Relink</a></li><li><a href="../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../project/rename/">Rename</a></li><li><a href="../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../project/comp-settings/">Comp settings</a></li><li><a href="../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../project/empty-folders/">Empty folders</a></li><li><a href="../project/unused/">Unused</a></li><li><a href="../project/reduce/">Reduce</a></li><li><a href="../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../import/import-assets/">Import assets</a></li><li><a href="../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../recipes/">Things you might not think to do</a></li><li class="here"><a href="../order/">Order of operations</a></li><li><a href="../faq/">When something looks wrong</a></li><li><a href="../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Order of operations</h1><p class="lede">Five pairs of tools where the order changes the result, and the reason in each case.</p><p>Most of the panel can be run in any order. These five cannot, and each has a mechanical reason rather than a stylistic one.</p>
+<h2 id="relink-then-gather-then-sort-disk">Relink, then Gather, then Sort disk</h2>
+<p><a href="../project/relink/">Relink</a> first — a missing item has no path, so nothing downstream can decide where its file belongs. <a href="../project/gather/">Gather</a> second, because Sort disk only files what is already inside the project directory and Gather is what puts it there. <a href="../project/sort-disk/">Sort disk</a> last, on a set of files that is finally complete and findable.</p>
+<h2 id="consolidate-before-organize">Consolidate before Organize</h2>
+<p><a href="../project/consolidate/">Consolidate</a> matches an imported <code>.aep</code>'s items to files you already have while the imported project's own folder still says which is which. Run <a href="../project/organize/">Organize</a> first and both sets are filed by kind into the same folders — after that nothing can tell the copy from the original. Organize raises its own note when it sees an imported project, and the note says this.</p>
+<h2 id="declare-masters-before-unused-reduce-or-collect">Declare masters before Unused, Reduce or Collect</h2>
+<p><em>Unused</em> means <em>not reachable from a master</em>. Until you have declared them, a comp with nothing above it looks exactly like the one you deliver, so <a href="../project/unused/">Unused</a> removes no comps at all, <a href="../project/reduce/">Reduce</a> has nothing to reduce to, and <a href="../project/collect/">Collect</a> has nothing to seed its basket from. See <a href="../setup/project/#masters">Set up each project</a>.</p>
+<h2 id="reduce-before-collect-or-use-collect-s-own-only-these-comps">Reduce before Collect — or use Collect's own Only these comps</h2>
+<p><a href="../project/collect/">Collect</a> copies what the project holds. If the project still holds three abandoned versions of the build, so does the folder you hand over. Either <a href="../project/reduce/">Reduce</a> the project first, or let Collect do it on the copy with <strong>Only these comps</strong> — which is the safer of the two, because your working project is left alone.</p>
+<h2 id="comp-settings-before-resize">Comp settings before Resize</h2>
+<p><a href="../project/resize/">Resize</a> works out its scale factor from each comp's current dimensions. Conform the sizes and frame rates first with <a href="../project/comp-settings/">Comp settings</a>, so the factor is measured from the size you meant rather than from one that drifted — otherwise a comp that was 1918 px wide scales to something that is not the number you asked for.</p>
+<h2 id="and-one-that-is-not-an-order">And one that is not an order</h2>
+<p><a href="../project/organize/">Organize</a> and <a href="../project/sort-disk/">Sort disk</a> read the two halves of the same template but touch nothing in common — one moves items in the Project panel, the other moves files on disk. Run either without the other, in whichever order suits you.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#relink-then-gather-then-sort-disk">Relink, then Gather, then Sort disk</a></li><li><a href="#consolidate-before-organize">Consolidate before Organize</a></li><li><a href="#declare-masters-before-unused-reduce-or-collect">Declare masters before Unused, Reduce or Collect</a></li><li><a href="#reduce-before-collect-or-use-collect-s-own-only-these-comps">Reduce before Collect — or use Collect's own Only these comps</a></li><li><a href="#comp-settings-before-resize">Comp settings before Resize</a></li><li><a href="#and-one-that-is-not-an-order">And one that is not an order</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

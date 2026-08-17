@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Things you might not think to do — Toolbox manual</title>
+<meta name="description" content="Twelve jobs that are an afternoon by hand and a few presses here — each one links to the tool page that explains it properly.">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../">Start here</a></li><li><a href="../setup/tool/">Set up once</a></li><li><a href="../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../project/organize/">Organize</a></li><li><a href="../project/sort-disk/">Sort disk</a></li><li><a href="../project/gather/">Gather</a></li><li><a href="../project/relink/">Relink</a></li><li><a href="../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../project/rename/">Rename</a></li><li><a href="../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../project/comp-settings/">Comp settings</a></li><li><a href="../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../project/empty-folders/">Empty folders</a></li><li><a href="../project/unused/">Unused</a></li><li><a href="../project/reduce/">Reduce</a></li><li><a href="../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../import/import-assets/">Import assets</a></li><li><a href="../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li class="here"><a href="../recipes/">Things you might not think to do</a></li><li><a href="../order/">Order of operations</a></li><li><a href="../faq/">When something looks wrong</a></li><li><a href="../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Things you might not think to do</h1><p class="lede">Twelve jobs that are an afternoon by hand and a few presses here — each one links to the tool page that explains it properly.</p><p>Every one of these is something After Effects will let you do the slow way. The steps are short on purpose; the tool pages carry the options and the warnings.</p>
+<p><strong>Hand a job to a freelancer as one self-contained folder, instead of zipping the project directory and hoping.</strong></p>
+<ol><li>Declare your master comps in the header — <strong>Masters ▾</strong> → <strong>+ add selected</strong>. See <a href="../setup/project/#masters">Set up each project</a>.</li><li><a href="../project/collect/">Collect</a> → <strong>Only these comps</strong>, tick <strong>Copy the files too</strong> and <strong>Tidy the collected project</strong>, choose a destination.</li><li>Press Collect. The path is already on your clipboard.</li></ol>
+<p><strong>Clean up after merging a template or a previous version of the job, instead of hunting for which of the two <code>bg.mov</code>s is yours.</strong></p>
+<ol><li><a href="../project/consolidate/">Consolidate</a> first — it links the imported items to files you already have and deletes the byte-identical copies.</li><li><a href="../project/organize/">Organize</a> with <strong>Leave imported .aeps</strong> off.</li><li>Nothing else to press: the empty-folder sweep runs with it.</li></ol>
+<p>Doing these in the other order makes the copies unmatchable forever — once Organize has filed them by kind, nothing can tell the copy from the original.</p>
+<p><strong>Rescue a project that was moved away from its footage, instead of relinking one item at a time.</strong></p>
+<ol><li>Read the nudge in the header first. If this is one project among many in a larger job, switch it to <strong>Unmanaged</strong> and stop here — see <a href="../setup/project/">Set up each project</a>.</li><li><a href="../project/relink/">Relink</a>, choose the directory the media now lives in, press <strong>Search</strong>.</li><li><a href="../project/gather/">Gather</a> with <strong>copying them</strong>, to bring the strays inside the project.</li><li><a href="../project/sort-disk/">Sort disk</a> to file what is now inside.</li></ol>
+<p><strong>Deliver a 4K version of a 1080 build, instead of changing the comp size and re-laying every layer.</strong></p>
+<ol><li>Select the master comp.</li><li><a href="../project/resize/">Resize</a> → <strong>Presets: 2160 tall</strong>, or <strong>Factor 2</strong>.</li><li>If it warns about a shared precomp, set <strong>Shared: Duplicate</strong> and re-read the preview.</li><li>Read the warnings, press <strong>Resize n</strong>, then check anything it named.</li></ol>
+<p><strong>Version up every render without touching a single filename.</strong></p>
+<ol><li><a href="../render/">Render</a> → <strong>Name</strong>, any rule containing <code>{version}</code>.</li><li>Add your comps, choose the output module and the destination.</li><li><strong>Queue n</strong> or <strong>Render n in background</strong>. The next number is read from disk <em>and</em> from After Effects' own queue, so two renders in a row cannot collide.</li></ol>
+<p><strong>Render overnight without tying up your After Effects.</strong></p>
+<ol><li><a href="../render/">Render</a> → add comps, pick the format, pick the output.</li><li><strong>Background</strong> → <strong>Resources: Balanced</strong>. Leave <strong>continue if footage is missing</strong> off, so it fails loudly rather than delivering a hole.</li><li><strong>Render n in background</strong>. Queue more; they chain by themselves.</li><li>In the morning, press the strip's finish button to import them.</li></ol>
+<p><strong>Bring a client's new plates into a project you have already built, instead of replacing footage item by item.</strong></p>
+<ol><li><a href="../import/update-assets/">Update assets</a> → <strong>Version looks like: either</strong>, <strong>Look in: 1 dir. up</strong>.</li><li><strong>Scan</strong>, then read the cost preview and the refusal rows before anything happens.</li><li><strong>Update n files</strong>. Nothing on disk changes — only the references.</li></ol>
+<p><strong>Import today's renders and have them filed by your template on arrival.</strong></p>
+<ol><li><a href="../import/import-assets/">Import assets</a> → choose the render directory, <strong>Scan</strong>.</li><li><strong>Filters ▾</strong> → <strong>Modified: Today</strong>, and tick <strong>Hide already imported</strong>.</li><li><strong>Put them in: Folder template</strong>, tick what you want, <strong>Import n</strong>.</li></ol>
+<p><strong>Strip a project down to what one deliverable needs, in place, instead of building a new project around it.</strong></p>
+<ol><li>Declare the master.</li><li><a href="../project/reduce/">Reduce</a> → <strong>Keep: declared masters</strong>. Read the <strong>Keep</strong> line before pressing — this one removes.</li><li><a href="../project/empty-folders/">Empty folders</a> to clear what the removal left behind.</li></ol>
+<p><strong>Audit how far a project has drifted from its own spec — and change nothing.</strong></p>
+<ol><li>Select your master comp, open <a href="../project/comp-settings/">Comp settings</a>.</li><li><strong>Copy settings from › Master</strong>.</li><li>Read the badge beside each field: that is how many comps do not match. Press <strong>Cancel</strong>. You have your answer and the project is untouched.</li></ol>
+<p><strong>Make a genuinely independent variant of a build, instead of duplicating a comp and finding both versions share every precomp.</strong></p>
+<ol><li>Select the comp, open <a href="../project/duplicate/">Duplicate</a>.</li><li>Leave <strong>Footage: share with the original</strong> unless you need a separate interpretation.</li><li>Set <strong>Add this text to the end of every copy: <code>_v2</code></strong>, and read the preview — it lists every comp the tree reached.</li></ol>
+<p><strong>Protect an externally-managed renders folder from every tool, forever.</strong></p>
+<ol><li>Select the folder in the Project panel.</li><li>Header → <strong>Protected ▾</strong> → <strong>+ add selected</strong>.</li><li>Everything inside it, at any depth, is now walked around by Organize, Rename, Reduce, Unused, Consolidate, Duplicate, Gather, Sort disk and the empty-folder sweep. See <a href="../setup/project/#protected">Set up each project</a>.</li></ol>
+<p><strong>Take ownership of media shared with another project, so the other copy can be deleted.</strong></p>
+<ol><li><a href="../project/relink/">Relink</a>, tick <strong>Also repoint footage that is not missing</strong>, and search the directory you want this project to own.</li><li><a href="../project/gather/">Gather</a> with <strong>Bring them in by: moving them</strong>.</li><li>Read the confirmation carefully. Moving is the irreversible one, and the other project will lose the files.</li></ol>
+    </article>
+    
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

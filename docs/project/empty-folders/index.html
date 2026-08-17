@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empty folders — Toolbox manual</title>
+<meta name="description" content="Removes the folders in the After Effects project that hold nothing — except the ones your template creates on purpose and the ones you tagged Protected.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li class="here"><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Empty folders</h1><p class="lede">Removes the folders in the After Effects project that hold nothing — except the ones your template creates on purpose and the ones you tagged Protected.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>A reorganize, a delete or an afternoon of dragging has left folders standing with nothing in them.</li><li>You imported another <code>.aep</code>, consolidated it, and its folder shell is still there.</li><li>You are about to hand the project on and want the Project panel to show only folders that hold something.</li><li>You want the sweep on its own, without running <a href="../../project/organize/">Organize</a> — which does it as part of its work.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Walks the whole project and removes every folder that holds nothing at any depth. Three things survive: folders on the template's <strong>Always create</strong> list, folders tagged <strong>Protected</strong>, and any folder that is an <em>ancestor</em> of one of those — <code>vector</code> cannot go while <code>vector/ref</code> has to stay. It acts on click, it never asks, and it is one ⌘Z.</p>
+<p>What it does not do: it does not touch anything that is not a folder, it does not move anything, and it does not touch directories on disk — those are <a href="../../project/sort-disk/">Sort disk</a>'s.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Press <strong>Empty folders</strong>. There is no sheet — it is the whole project, always.</li><li>Read the footer. It says what happened, as figures: <em>removed 4 empty folders</em>, or <em>nothing to do</em>.</li></ol>
+<p><strong>Scope.</strong> The whole project. This tool takes no selection and offers no options, so nothing about it changes between one press and the next.</p>
+<p><img src="../../img/empty-folders.png" alt="The Empty folders tile and its result in the footer" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th></th><th>What it means</th></tr></thead><tbody><tr><td><strong>Empty folders</strong>, in the <strong>Remove</strong> group</td><td>Point at it and the footer reads <em>Remove empty folders · removes things</em>. There is no count at rest — the number cannot be known until the folders are read.</td></tr><tr><td><em>removed n empty folders</em></td><td>The footer after a run.</td></tr><tr><td><em>nothing to do</em></td><td>Nothing was empty. That is not the same as nothing being removable — see below.</td></tr></tbody></table></div>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z. Nothing on disk changes.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout note"><span class="label">Note</span><p><strong>Folders you keep empty on purpose need to say so.</strong> A folder that is empty because you are about to fill it looks exactly like one nothing uses. Two ways to keep it: put it on the template's <strong>Always create</strong> list in <a href="../../setup/tool/#the-project-panel-tab">Settings</a>, which does it for every project that uses the template, or tag it <strong>Protected</strong> in the header, which does it for this one. The shipped default keeps <code>mov/ref</code>, <code>mov/renders</code>, <code>raster/ref</code>, <code>vector/ref</code> and <code>storyboards</code> that way.</p></aside>
+<aside class="callout watch-out"><span class="label">Watch out</span><p>***nothing to do* is about right now, not about the next run.** This tool exists because moves empty folders that are not empty yet. Run <a href="../../project/organize/">Organize</a> and the sweep it carries clears what its own moves vacated, whether or not anything was empty when you started. Pressing this beforehand and getting <em>nothing to do</em> says nothing about that.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A Protected folder survives while empty, and so does everything above it.</strong> Protection cascades down a folder, and the sweep also has to leave the path that reaches it. So one tagged folder deep in a tree keeps its parents standing too.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Run it after deleting things by hand.</strong> Deleting a comp in the Project panel leaves its folder behind; this is the one press that clears the shells.</li><li><strong>Run it after <a href="../../project/consolidate/">Consolidate</a>.</strong> Consolidate sweeps only the folders its own work emptied, by design. If the imported project left other empties behind, this reaches them.</li><li><strong>Use it as the check on your template.</strong> If it removes a folder you wanted, that folder was not on the <strong>Always create</strong> list — and now you know to add it.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../project/organize/">Organize</a>, which runs the same sweep as part of its work. <a href="../../setup/project/#protected">Set up each project</a> for <strong>Protected</strong>, and <a href="../../setup/tool/#the-project-panel-tab">Set up once</a> for <strong>Always create</strong> — the two ways a folder survives.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

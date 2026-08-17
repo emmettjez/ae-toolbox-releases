@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consolidate — Toolbox manual</title>
+<meta name="description" content="Cleans up after importing another .aep — points your layers at the files you already have and removes the copies that are identical to them.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li class="here"><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Consolidate</h1><p class="lede">Cleans up after importing another .aep — points your layers at the files you already have and removes the copies that are identical to them.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>You have just imported a previous version of the same job, and half of it is a second copy of what you already have.</li><li>A colleague's <code>.aep</code> came in and brought its own copy of every plate.</li><li>You imported a template project and it duplicated your comps and footage.</li><li><strong>Before</strong> you run <a href="../../project/organize/">Organize</a> on anything that came from an imported <code>.aep</code>.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Finds every imported <code>.aep</code> subtree in the project and pairs each item in it against the counterpart you already had, by name and type. A pair is only treated as the same thing when a structural fingerprint matches as well — layer count, duration and dimensions for a comp; path, duration and dimensions for footage; dimensions and duration for a solid. Where they match, every layer using the copy is pointed at the original and the copy is deleted. Copies nothing uses are deleted. Everything else is left alone. It is one ⌘Z.</p>
+<p>What it does not do: it does not file anything into your folder structure — the survivors stay where the imported project put them, and the sweep only clears the folders this run emptied. Filing is <a href="../../project/organize/">Organize</a>'s job, after this.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Press <strong>Consolidate</strong> — after importing the <code>.aep</code>, and before Organize.</li><li>Read the note per imported project: <em>\&lt;path\&gt;: n identical, m diverged (left alone), k unused here, j only here</em> — and <em>l ambiguous (skipped)</em> when there were duplicate names on your side.</li><li>Read <strong>Relinks layers</strong> — each copy and the original your layers will point at instead — and <strong>Removes</strong>, every item by name with its folder.</li><li>Press <strong>Consolidate n</strong>.</li></ol>
+<p><strong>Scope.</strong> Every imported subtree in the project, in one run. A subtree nested inside another is handled by its outermost parent, so nothing is counted twice.</p>
+<p><img src="../../img/consolidate.png" alt="The Consolidate imported project sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Point layers at the original and delete the copy</strong></td><td>On by default. The identical pairs: layers are repointed, then the duplicate is retired. This is the part that does the work.</td></tr><tr><td><strong>Delete copies nothing else uses</strong></td><td>On by default. Items that came in with the import, have no counterpart on your side, and are referenced by nothing.</td></tr></tbody></table></div>
+<p>What each of the five outcomes gets:</p>
+<div class="tablewrap"><table><thead><tr><th>Outcome</th><th>What happens</th></tr></thead><tbody><tr><td>identical</td><td>layers repointed at your original, the copy deleted</td></tr><tr><td>unused here</td><td>deleted, if nothing else uses it</td></tr><tr><td>diverged</td><td>left alone, and named in the preview</td></tr><tr><td>only here</td><td>left alone</td></tr><tr><td>ambiguous</td><td>left alone — the name matched more than one item on your side, so the pairing is not decidable</td></tr></tbody></table></div>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z, deletes and relinks included. Nothing on disk changes.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>Run it before <a href="../../project/organize/">Organize</a>, always.</strong> Once Organize has filed the imported items by kind and swept the imported project's folders, nothing can tell the copies from the originals — they are sitting in the same folders now, under the same names. The pairing depends on the imported subtree still being identifiable. Organize's own notes tell you the same thing when it spots one.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A comp you have since changed is not a copy.</strong> Reformat a comp from 1920×1080 to 1080×1920 and the fingerprint stops matching, so it is reported as <em>diverged</em> and left alone. That is the whole safety story: the tool would rather leave a duplicate than merge two things that have drifted apart.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>The sweep here is partial by design.</strong> This run only ever touches an imported subtree, so it clears only folders it emptied itself. Empty folders elsewhere in the project stay — run <a href="../../project/empty-folders/">Empty folders</a> for those.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Protected items are never retired</strong>, even when they are byte-identical duplicates. Tagging something <code>[KEEP]</code> takes it out of this tool's reach like every other.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Merge a previous version of the job back in and keep only the parts that changed.</strong> Import it, consolidate, and what is left of the import is exactly what differs. On one real project this removed 256 identical items out of a 336-item subtree.</li><li><strong>Use the diverged rows as a rough diff.</strong> They name the comps whose dimensions differ between the two versions — not a full comparison, but often the answer to "what did they change".</li><li><strong>Consolidate, then Organize, then <a href="../../project/empty-folders/">Empty folders</a>.</strong> That order gets an imported project down to what it added and files it away.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../project/organize/">Organize</a>, always after this. <a href="../../project/unused/">Unused</a> for the items on your own side that nothing points at — its <strong>Include items inside imported .aeps</strong> stays off precisely so that this tool handles the imported half.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>
