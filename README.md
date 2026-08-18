@@ -84,32 +84,40 @@ Toolbox is one grid of tools, in categories laid out in the order a job runs:
 
 ## What's new in this version
 
-### Toolbox 0.8.5 — August 17, 2026
+### Toolbox 0.9.0 — August 18, 2026
 
 #### New Features
-**Panel**
-- The panel is one grid of tools in seven categories: Import, Folders & files, Names, Fixes, Remove, Create, Render. The Project / Render / Import switcher is gone.
-- Import assets and Update assets are two tiles in the Import category. Each opens its own full-panel sheet; the sheet states what a scan would read before Scan is pressed. Import and Update are the sheet's main button.
-- Render is a tile in the Render category and opens as a full-panel sheet. Close puts the grid back; the comp basket and settings are kept.
-- The Masters, Protected and Managed strip and the tool footer are shown at all times.
+**Settings**
+- Your own rules are cards. A card is one or more tests, all of which must hold — name, extension (one or more), kind, located under a disk folder, in a project folder, changed in the last N days or weeks — and a folder to send matches to. Cards are checked before the structure's kinds, top to bottom; the first card that matches an item takes it.
+- Each card shows a live count of what it catches in the open project, and says why it is zero: matches nothing here, not finished, taken by a card above, or needs masters declared. Clicking the count lists the items.
+- **+ from selection** starts a card from what the selected items share: extension, kind, a common directory, or a selected folder.
+- A card using a folder or age test is re-checked every time Organize runs, so an item that has moved or aged out is filed differently on a later run.
+- Settings is laid out in bands: the structure is a table with a Now column counting what the open project has of each kind, the Project panel and Disk halves switch on the band heading, and special folders are chips.
+
+**Rename**
+- The kinds a run may touch are one block, Applies to: Comps, Solids, Footage, and the names After Effects wrote itself. All four are inclusions.
+- Numbering is one question — leave alone, add a counter, or restyle what's there — and each answer shows only its own rows. A lone number is a version and Close gaps in a set are options of restyling.
+- Name pattern is its own band. {name} is the name after every other step, {n} the counter.
 
 #### Improvements
-- Background render jobs are shown at the top of the Render sheet and, when it is closed, in a strip under the header. A running or waiting job puts a dot on the Render tile.
-- Cancelling a background render from inside the Render sheet returns to the sheet afterwards.
-- Every sheet has a ? that opens its page of the manual.
-- Opening a different project while a sheet is open closes the sheet; the status line says which one.
-- Closing the Import or Update sheet stops a scan in progress.
-- Job files are read once per redraw of the panel instead of once per row.
+- Custom rules match in the order they are listed. Previously a name rule was matched before an extension rule regardless of order.
+- The Import scan reads dates and sizes in chunks after the walk, with its progress shown in the sheet, and Stop ends it. Previously the panel was unresponsive for the whole of that read, and Stop did not stop it.
+- An Import scan asks each time before switching to the After Effects reader; the remembered answer applies to Relink and Update only.
+- Typing in a filter or a path field no longer redraws the sheet on every keystroke.
 
 #### Bug Fixes
-- Fixed Escape closing the Import sheet while its Filters popover was open.
-- Fixed the Import and Update sheets failing to open before the first scan of a project.
+- Fixed the Rename sheet drawing Comps, Solids, Fix characters and Collapse double spaces unchecked while the run treated them as on.
+- Fixed rule cards and Disk edits in Settings not being saved.
+- Fixed the Import scan showing no progress and Stop appearing to do nothing while a scan ran.
+- Fixed the panel repainting a large Import listing on every four files while lengths were read; a listing of 137,000 rows left the panel unresponsive for minutes.
+- Fixed two Settings rows overflowing at the panel's minimum width.
 
 ## Version history
 
 | Version |  |
 | :---- | :---- |
-| **0.8.5** | One grid of tools; Import and Render open as sheets. |
+| **0.9.0** | Rule cards; Settings and Rename redesigned. |
+| **0.8.5 – 0.8.6** | One grid of tools; Import and Render open as sheets. |
 | **0.8.4** | Managed / Unmanaged project directory; render destination remembered per project. |
 | **0.8.3** | Collect: whole-project scope, proxies, image sequences. |
 | **0.8.2** | Resize. |
