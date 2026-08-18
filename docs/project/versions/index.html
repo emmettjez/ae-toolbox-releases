@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Versions — Toolbox manual</title>
+<meta name="description" content="Lists every asset the project is holding at more than one version, says which comps use which, and can repoint every use to the newest.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li><li class="here"><a href="../../project/versions/">Versions</a></li><li><a href="../../project/missing-frames/">Missing frames</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Versions</h1><p class="lede">Lists every asset the project is holding at more than one version, says which comps use which, and can repoint every use to the newest.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>Two comps look different and you suspect one of them is still built on the old plate.</li><li>A project has been through three hands and nobody knows which version it is actually rendering.</li><li>A delivery arrived twice, a month apart, and both are in the project.</li><li>You are about to hand the project on and want everything on one version.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Reads the footage list and groups items whose names differ only by a version number. Where the project holds a family at more than one number, it draws that family: every version in the project, which comps use each one, and which is newest. Tick a family and press <strong>Consolidate</strong>, and every use of an older version is repointed at the newest one the project already has. Nothing on disk changes and nothing is read from disk — every fact on this sheet is in the project already.</p>
+<p>What it does not do: it does not look on disk, so it cannot find a newer version that has not been imported — that is <a href="../../import/update-assets/">Update assets</a>. It does not delete the item it repointed away from. And it never picks between two files claiming the same version.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Press the <strong>Versions</strong> tile. There is nothing to scan and nothing to wait for.</li><li>Check <strong>Version looks like</strong> at the top of the sheet — it decides what counts as a version number, and it is the same setting the Import and Update sheets read.</li><li>Read the line under it: <em>n of n versioned assets are held at more than one version</em>.</li><li>Read each family. Every version the project holds is a row, and under it the comps that use that version.</li><li>Tick <strong>Consolidate to v07</strong> on the families you want, and press <strong>Consolidate n families</strong>.</li></ol>
+<p><strong>Scope.</strong> The whole project. There is no selection scope — the question is about the project. Footage the project cannot find is skipped: repointing a broken reference at a file nobody has verified is how a relink goes wrong quietly, so <a href="../../project/relink/">Relink</a> comes first.</p>
+<p><img src="../../img/versions.png" alt="The Versions sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Version looks like</strong></td><td><strong>v001</strong> — a v then digits. <strong>_001</strong> — padded digits with no v. <strong>either</strong> — both. One setting, shared with <a href="../../import/import-assets/">Import assets</a> and <a href="../../import/update-assets/">Update assets</a>; changing it here changes it there.</td></tr><tr><td>A family</td><td>One band per family: the stem as its heading, the versions held beside it, and a <strong>n versions</strong> badge.</td></tr><tr><td>A version row</td><td>The version and its path, then either <em>newest · used in n comps</em>, <em>used in n comps</em>, or <em>used by nothing</em>. The comps are named under the row, four of them and then <em>+ n more</em>.</td></tr><tr><td><strong>Consolidate to v07</strong></td><td>The tick, one per family, with the number of items it would repoint on the right.</td></tr></tbody></table></div>
+<p>Notes it may raise, and what they mean:</p>
+<ul><li><em>nothing in the project has a version in its name</em> and <em>n versioned assets · every versioned asset is held once</em> — two different silences. The first means the scheme found no versions at all; the second means it found them and every one is held once.</li><li><em>tick a family to consolidate it</em> · <em>nothing in what is ticked can be repointed</em> — the button's reason, on the button.</li><li><em>stem has n files at v07 and was left alone — nothing says which one is the asset, and picking wrong changes a render silently.</em></li><li><em>n older items stay in the project and become unused. Nothing is deleted here — Remove unused takes them.</em></li></ul>
+<h2 id="undo">Undo</h2>
+<p>One ⌘Z. Nothing on disk changes at any point — only which file each item points at.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>Consolidating changes what those comps render.</strong> An older version being used by a comp is the case worth looking at, which is why each row names its comps rather than counting them. A version held but used by nothing is the easy one.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>The old item stays, and becomes unused.</strong> A repoint is not a removal. What is left is an item nothing points at, and <a href="../../project/unused/">Unused</a> is the tile that deletes it — a separate press, and a decision to make after looking at this one.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A tie is refused, never guessed.</strong> Two files claiming the same highest version means nothing on disk says which is the asset. The family is drawn, the reason is stated, and nothing is offered for it. Move or rename one of them.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Audit and press nothing.</strong> The list is the product. Which comps are on which version is worth knowing whether or not you consolidate.</li><li><strong>Check a project before you hand it on.</strong> Two versions of one plate in a project is the thing the next person will not notice until they render.</li><li><strong>Read it after a partial update.</strong> Updating a selection rather than the whole project leaves exactly this shape behind, on purpose — this is where you see it.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../import/update-assets/">Update assets</a> answers the disk half — is there a newer version out there. <a href="../../project/relink/">Relink</a> comes first when something is missing. <a href="../../project/unused/">Unused</a> takes the items a consolidate leaves behind.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>

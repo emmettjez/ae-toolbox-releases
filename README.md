@@ -50,6 +50,8 @@ Toolbox is one grid of tools, in categories laid out in the order a job runs:
 | :---- | :---- |
 | **Comp settings** | Sets frame rate, dimensions and duration across many comps. |
 | **Resize** | Changes a comp's resolution — with its precomps, text, masks, lights, cameras and effects — so the render is identical at the new size. |
+| **Versions** | Lists assets held at more than one version and can repoint every use to the newest. |
+| **Missing frames** | Checks every image sequence for frames missing inside its range. |
 
 ### Remove
 

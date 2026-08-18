@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missing frames — Toolbox manual</title>
+<meta name="description" content="Reads the directory behind every image sequence in the project and reports the runs with holes in them. It changes nothing.">
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../../">Start here</a></li><li><a href="../../setup/tool/">Set up once</a></li><li><a href="../../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Project · Folders & files</div><ul><li><a href="../../project/organize/">Organize</a></li><li><a href="../../project/sort-disk/">Sort disk</a></li><li><a href="../../project/gather/">Gather</a></li><li><a href="../../project/relink/">Relink</a></li><li><a href="../../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Project · Names</div><ul><li><a href="../../project/rename/">Rename</a></li><li><a href="../../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Project · Fixes</div><ul><li><a href="../../project/comp-settings/">Comp settings</a></li><li><a href="../../project/resize/">Resize</a></li><li><a href="../../project/versions/">Versions</a></li><li class="here"><a href="../../project/missing-frames/">Missing frames</a></li></ul></div><div class="group"><div class="grouphead">Project · Remove</div><ul><li><a href="../../project/empty-folders/">Empty folders</a></li><li><a href="../../project/unused/">Unused</a></li><li><a href="../../project/reduce/">Reduce</a></li><li><a href="../../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Project · Create</div><ul><li><a href="../../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../../render/">Render</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../../import/import-assets/">Import assets</a></li><li><a href="../../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../../recipes/">Things you might not think to do</a></li><li><a href="../../order/">Order of operations</a></li><li><a href="../../faq/">When something looks wrong</a></li><li><a href="../../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Missing frames</h1><p class="lede">Reads the directory behind every image sequence in the project and reports the runs with holes in them. It changes nothing.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>A render came back from the farm and you want to know it is complete before you build on it.</li><li>A comp holds one frame longer than it should and nothing in the timeline explains it.</li><li>A copy off a server was interrupted and you are not sure what arrived.</li><li>You are archiving a job and want to know the sequences in it are whole.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Lists every image sequence the project uses, reads each one's directory, and compares what is on disk against the run's own span — its first frame number to its last. A run that starts at 0001 and ends at 0120 with 118 files in it is missing two, and the sheet names which numbers are absent. It is read-only: nothing is repointed, written or repaired, and the only button is <strong>Close</strong>.</p>
+<p>What it does not do: it does not invent a length. Nothing on disk says how long a render was meant to be, so a run that stops short at the end reads as whole — only holes <em>inside</em> the run's own range are gaps. It does not walk a tree either; it reads one directory per sequence directory and no more.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Press the <strong>Missing frames</strong> tile. The top band says how many sequences are in the project and how many directories checking them would read.</li><li>Press <strong>Check</strong>. Nothing is read until you do.</li><li>Watch the bar — <em>n of n directories read</em>, with the directory it is on. <strong>Stop</strong> ends it.</li><li>Read the rows. Only problems are drawn; a sequence with nothing wrong does not take a line.</li><li>Press <strong>Close</strong>. There is nothing to apply.</li></ol>
+<p><strong>Scope.</strong> Every image sequence in the project. There is no selection scope and no directory to choose. The same sequence imported twice is one row, because it is one question.</p>
+<p><img src="../../img/missing-frames.png" alt="The Missing frames sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Check</strong></td><td>Starts the read, and becomes <strong>Stop</strong> while it runs. Dim when the project holds no image sequences. Closing the sheet stops the read as well.</td></tr><tr><td>The count line</td><td><em>n of n sequences checked · n frames · n missing</em>. The first number is what was actually checked, which is not the same as how many there are — a directory that would not open is not a pass.</td></tr><tr><td>A gap row</td><td><em>118 of 120 frames · 2 missing · 0043 · 0044</em> — the numbers that are absent, up to six of them, then <em>+n</em>. A very long run states the count but not the list rather than guessing at it.</td></tr><tr><td><em>only one file of this run is on disk</em></td><td>The project holds it as a sequence and one frame is all that is there.</td></tr><tr><td><em>the frame this points at is not in the directory</em></td><td>The directory read fine; the frame the project names is not in it.</td></tr><tr><td><em>the project cannot find this footage — relink it first</em></td><td>Missing footage. <a href="../../project/relink/">Relink</a> before this can say anything.</td></tr><tr><td><em>the directory could not be read</em> / <em>the directory was not read</em></td><td>A refusal or a stopped run. It is a row, never a silence.</td></tr></tbody></table></div>
+<p>Notes it may raise, and what they mean:</p>
+<ul><li><em>n sequences have frames missing inside their own ranges. After Effects renders a gap as a held frame, so nothing here is broken — it is just short.</em></li><li><em>n sequences could not be checked — a directory would not open. That is not the same as being complete.</em></li><li><em>stopped — this is a partial answer, and every directory not reached is a row below</em></li><li><em>no missing frames</em> · <em>nothing was checked</em> · <em>no image sequences in this project</em></li></ul>
+<h2 id="undo">Undo</h2>
+<p>Nothing to undo. It reads directories and reports what it found; the project is not touched.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>After Effects will not tell you.</strong> A gap in a sequence renders as the frame before it, held. Nothing goes red, nothing fails, and the render is one frame short of what you think it is — which is why this exists as a check rather than as a warning somewhere else.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A short run is not a gap.</strong> If a render was meant to be 200 frames and stopped at 120, this reports a whole 120-frame run, because the run's own span is the only length anything on disk can state. Compare against the comp, not against this.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>Unread is never counted as clean.</strong> A directory that refuses to open gets its own row and its own line in the footer. <em>No missing frames</em> is only ever said about what was actually read.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Check before you archive.</strong> A gap found now is a re-render; a gap found in two years is a hole.</li><li><strong>Check what a mounted server actually delivered.</strong> The read goes through the same bridge every other directory read uses, so a volume the fast reader cannot see is still read — see Settings › Searching.</li><li><strong>Run it after an update.</strong> <a href="../../import/update-assets/">Update assets</a> warns about gaps in the run it is about to repoint you to; this is where you look at every sequence in the project at once.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../../project/relink/">Relink</a> first, for anything the project cannot find. <a href="../../import/update-assets/">Update assets</a> raises the same finding on the one run it is about to point you at.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>
