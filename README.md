@@ -84,22 +84,42 @@ Toolbox is one grid of tools, in categories laid out in the order a job runs:
 
 ## What's new in this version
 
-### Toolbox 0.10.0 — August 18, 2026
+### Toolbox 0.11.0 — August 18, 2026
 
 #### New Features
-**Import assets**
-- Tree view is a tree. Folders nest under the directory that was scanned, one indent per level, and a folder row shows its own name. A folder that holds only one sub-folder is drawn as one row (`project › aep`).
-- Every folder row has a tick box. It ticks everything beneath the folder, collapsed or not, and reads part-ticked when only some of it is. The count beside it is the number of rows beneath.
-- ⌥-click on a folder collapses or opens everything beneath it. A plain click on a collapsed folder opens that folder only.
+**Duplicate**
+- Added **Inside the folder**: *mirror the originals* (default) keeps the copies in the same sub-folders as the originals, measured from the folder they share, with the selected comp at the top; *flat* puts every copy in the one folder; *sorted by the template* files them the way the template files a fresh project. Hidden under *next to originals*, where there is no folder to arrange.
+
+**Organize · Sort disk**
+- The folder structure, your own rules, folder naming and special folders can be opened and edited from inside the Organize sheet (**Folders & rules**), and the disk structure from inside Sort disk (**Directories & rules**). Edits are live and change the plan on the same screen. Settings still holds both.
 
 #### Improvements
-- The header tick box now ticks everything when the table is part-ticked, as a folder box does. Previously it cleared.
-- Redrawing a large Import listing in Tree view is faster; a listing of 135,000 rows redraws in about a second where it took two to four.
+- **Duplicate** and **Import** now pre-select *selected folder* whenever something is selected; *template folders* only when nothing is selected and the project has been organized; otherwise *project root*.
+- **Sort disk** and **Gather** count files everywhere — the button, the list, the notes, the confirmation card and the report after — with an image sequence counted by its frames and a file shared by several items counted once. Previously the same press could show four different numbers.
+- The disk confirmation card now shows the plan's warnings and "left alone" lines, and says "about" when a total includes a sequence sized by estimate.
+- **Organize**'s "What to organize" rows show how many items of each kind will move, with a dimmed *n left alone* when protected or special-folder items are held back.
+- **Update assets** rows read `shot_040 v01 → v02` instead of a directory on one side and a frame filename on the other.
+- After an instant tool runs (Empty folders, Unused, Reduce, Consolidate, Number comps), its result line shows while the pointer is still on the tile. Previously it never appeared.
+- A text field that commits when it loses focus no longer swallows the first press on the button beside it. Same fix in Import (Scan after pasting a path), Rename, Comp settings, Resize and Settings.
+
+#### Bug Fixes
+- **Import** filed footage under `mov` when the template said `01_mov` — folder numbering was ignored. Same fix for the renders folder written after a render, which created a second, unnumbered `mov` folder.
+- **Duplicate** copied only the top comp when "Levels deep to copy" was cleared; blank now means the whole tree.
+- **Rename** forgot seven of its options every time the panel reloaded: the four "Applies to" switches, *Fix characters that break render paths*, *Collapse double spaces* and *Strip version words*.
+- **Collect** could price an image sequence at twice its size when another run shared its directory, and drop it under the size limit. Sequences are now sized from the run the plan lists.
+- **Collect** flattened sub-folders on projects whose `.aep` lived in `ae/`, `aeps/` or `projects/`, or under a project-root override.
+- A "located under…" rule matched in Organize but not in Import or Collect when After Effects recorded the path under `/Volumes/<boot disk>/`.
+- **Render** showed only the first blocker in its footer when there were two.
+- Copy from master's source picker forgot its choice on any redraw.
+- Various internal fixes.
+
+---
 
 ## Version history
 
 | Version |  |
 | :---- | :---- |
+| **0.11.0** | Duplicate keeps sub-folders; the structure edits from Organize and Sort disk; disk counts are files. |
 | **0.10.0** | Import's Tree view is a tree; folders tick. |
 | **0.9.0** | Rule cards; Settings and Rename redesigned. |
 | **0.8.5 – 0.8.6** | One grid of tools; Import and Render open as sheets. |
