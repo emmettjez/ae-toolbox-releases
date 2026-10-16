@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brightness — Toolbox manual</title>
+<meta name="description" content="Reads the centre pixel of a comp on every frame and writes its brightness to a CSV — the curve a light is driven from.">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../">Toolbox <span>manual</span></a>
+  <a class="dl" href="https://github.com/emmettjez/ae-toolbox-releases/releases/latest/download/ae-toolbox-latest.pkg">Download</a>
+  <a class="gh" href="https://github.com/emmettjez/ae-toolbox-releases">Releases</a>
+  <button class="menu" aria-label="Menu" onclick="document.body.classList.toggle('navopen')">☰</button>
+</header>
+<div class="shell">
+  <nav class="side"><div class="group"><div class="grouphead">Start</div><ul><li><a href="../">Start here</a></li><li><a href="../setup/tool/">Set up once</a></li><li><a href="../setup/project/">Set up each project</a></li></ul></div><div class="group"><div class="grouphead">Import</div><ul><li><a href="../import/import-assets/">Import assets</a></li><li><a href="../import/update-assets/">Update assets</a></li></ul></div><div class="group"><div class="grouphead">Folders & files</div><ul><li><a href="../project/organize/">Organize</a></li><li><a href="../project/sort-disk/">Sort disk</a></li><li><a href="../project/gather/">Gather</a></li><li><a href="../project/relink/">Relink</a></li><li><a href="../project/collect/">Collect</a></li></ul></div><div class="group"><div class="grouphead">Names</div><ul><li><a href="../project/rename/">Rename</a></li><li><a href="../project/number-comps/">Number comps</a></li></ul></div><div class="group"><div class="grouphead">Fixes</div><ul><li><a href="../project/comp-settings/">Comp settings</a></li><li><a href="../project/resize/">Resize</a></li><li><a href="../project/versions/">Versions</a></li><li><a href="../project/missing-frames/">Missing frames</a></li></ul></div><div class="group"><div class="grouphead">Remove</div><ul><li><a href="../project/empty-folders/">Empty folders</a></li><li><a href="../project/unused/">Unused</a></li><li><a href="../project/reduce/">Reduce</a></li><li><a href="../project/consolidate/">Consolidate</a></li></ul></div><div class="group"><div class="grouphead">Create</div><ul><li><a href="../project/duplicate/">Duplicate</a></li></ul></div><div class="group"><div class="grouphead">Render</div><ul><li><a href="../render/">Render</a></li><li class="here"><a href="../brightness/">Brightness</a></li></ul></div><div class="group"><div class="grouphead">More</div><ul><li><a href="../recipes/">Things you might not think to do</a></li><li><a href="../order/">Order of operations</a></li><li><a href="../faq/">When something looks wrong</a></li><li><a href="../reference/">Reference</a></li></ul></div></nav>
+  <main class="page">
+    <article>
+<h1>Brightness</h1><p class="lede">Reads the centre pixel of a comp on every frame and writes its brightness to a CSV — the curve a light is driven from.</p><h2 id="use-it-when">Use it when</h2>
+<ul><li>A practical light on set, an LED strip or a lamp in a model has to follow what is on screen, frame for frame.</li><li>You have a finished comp and someone downstream wants <em>frame, value</em> and nothing else.</li><li>You want the curve from the comp itself, before anything is rendered.</li><li>A grade or a timing change has moved, and the CSV has to be written again.</li></ul>
+<h2 id="what-it-does">What it does</h2>
+<p>Opens the comp that is active in the timeline, reads the pixel at its centre on every frame of the range you choose, converts that value to linear light and writes one row per frame to a CSV: a <code>frame,brightness</code> header, then <code>frame number, value</code> with the value between 0 and 1. Transparency counts as black — a half-transparent white pixel writes 0.5. The file is the same shape Toolbox Explorer writes from a movie, so anything that reads one reads the other.</p>
+<p>What it does not do: it does not average the frame, smooth the curve or offset it in time, and it does not read a movie; those are Toolbox Explorer's. It reads one pixel, the centre, and the comp is left exactly as it was.</p>
+<h2 id="do-it">Do it</h2>
+<ol><li>Open the comp in the timeline. The sheet follows whichever comp is active; with none open it says <em>Open a comp in the timeline</em>.</li><li>Press the <strong>Brightness</strong> tile. <strong>Comp</strong> names the comp with its size, frame rate and the number of frames that will be read.</li><li>Choose <strong>Range</strong>: <em>Whole comp</em> or <em>Work area</em>.</li><li>Check <strong>Space</strong>. It opens on what your project's colour settings say — <em>Rec.709 (2.4)</em> for the default working space, <em>Linear</em> when <strong>Linearize Working Space</strong> is on, <em>sRGB</em> for an sRGB working space — and the project's own working-space name is written beside it. Change it only if you know the comp's values are in something else.</li><li>Press <strong>Save CSV…</strong>, name the file and choose where it goes. The name offered is <em>comp name</em>.brightness.csv.</li><li>Wait. The button reads <em>Sampling 96 of 480…</em> while it works; After Effects renders each frame to read it, so a heavy comp takes about as long as a preview of it. <strong>Cancel</strong> stops it and writes nothing.</li></ol>
+<p><strong>Scope.</strong> The active comp, nothing else. There is no selection scope and no batch — one comp, one file.</p>
+<p><img src="../img/brightness.png" alt="The Brightness sheet" loading="lazy"></p>
+<h2 id="what-you-ll-see">What you'll see</h2>
+<div class="tablewrap"><table><thead><tr><th>Option</th><th>What it means</th></tr></thead><tbody><tr><td><strong>Comp</strong></td><td>The active comp — <em>1920 × 1080 · 24 fps · 480 frames</em>. The frame count follows the range.</td></tr><tr><td><strong>Range</strong></td><td><em>Whole comp</em> reads from the comp's first frame to its last. <em>Work area</em> reads the work area only, and the frame numbers in the file are the comp's own, so the first row is the frame the work area starts on.</td></tr><tr><td><strong>Space</strong></td><td>How the value After Effects hands back is turned into linear light. <em>Rec.709 (2.4)</em> is a 2.4 power, the curve the default working space uses. <em>sRGB</em> is the sRGB curve. <em>Linear</em> leaves the value as it is.</td></tr><tr><td><strong>Save CSV…</strong></td><td>Opens the save dialog. Nothing is read until you confirm it.</td></tr><tr><td><em>✓ Wrote shot.brightness.csv · 480 frames</em></td><td>The result. <em>· n clipped</em> follows it when a 32-bit comp carried values above 1, which are written as 1.</td></tr></tbody></table></div>
+<p>Notes it may raise, and what they mean:</p>
+<ul><li><em>Open a comp in the timeline</em> — nothing is active, so there is nothing to read.</li><li><em>the work area is empty</em> — the range would read no frames; widen it or choose <em>Whole comp</em>.</li><li><em>the read failed — …</em> — After Effects refused, and the message that follows is its own.</li></ul>
+<h2 id="undo">Undo</h2>
+<p>The comp is not changed. Reading it adds a temporary comp to the project and removes it again in the same step, so ⌘Z after a run has nothing of yours to undo. The CSV is a file on disk; the save dialog asked before it was written, and writing over an existing file is what that dialog's own warning is for.</p>
+<h2 id="watch-out">Watch out</h2>
+<aside class="callout watch-out"><span class="label">Watch out</span><p><strong>It is one pixel.</strong> A title that never crosses the centre of frame does not change the curve at all, and a flicker on one pixel is a flicker in the file. If what should drive the light is the whole picture, render the comp and average it in Toolbox Explorer.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>The space has to be right.</strong> The same stored value is 0.19 in Rec.709 and 0.5 in Linear. The sheet reads your project's colour settings to choose, but a comp whose footage was interpreted into a different space is yours to call.</p></aside>
+<aside class="callout note"><span class="label">Note</span><p><strong>A long comp blocks After Effects.</strong> Each frame is rendered to be read, in batches of 96, and After Effects does not respond between frames in a batch. Cancel waits for the batch to finish.</p></aside>
+<h2 id="things-you-might-not-think-to-do">Things you might not think to do</h2>
+<ul><li><strong>Use the work area as a trim.</strong> Set it around the shot you want and the file starts at that frame number, so it lines up with an edit without renumbering.</li><li><strong>Write it again after a grade.</strong> The sheet remembers the range and the space.</li></ul>
+<h2 id="pairs-with">Pairs with</h2>
+<p><a href="../render/">Render</a> renders the comp this reads. Toolbox Explorer does the same job from the rendered movie, with averaging and smoothing.</p>
+    </article>
+    <nav class="toc"><div class="tochead">On this page</div><ul><li><a href="#use-it-when">Use it when</a></li><li><a href="#what-it-does">What it does</a></li><li><a href="#do-it">Do it</a></li><li><a href="#what-you-ll-see">What you'll see</a></li><li><a href="#undo">Undo</a></li><li><a href="#watch-out">Watch out</a></li><li><a href="#things-you-might-not-think-to-do">Things you might not think to do</a></li><li><a href="#pairs-with">Pairs with</a></li></ul></nav>
+  </main>
+</div>
+<footer class="foot">Toolbox for After Effects · macOS · <a href="https://github.com/emmettjez/ae-toolbox-releases/releases">release notes</a></footer>
+</body>
+</html>
